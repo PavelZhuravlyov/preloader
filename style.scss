@@ -1,0 +1,83 @@
+$sizeBall: 16px;
+$animateName: loader;
+$animateDuration: 1.5s;
+$animateTimingFunction: linear;
+$animateIterationCount: infinite;
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.preloader {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	margin: 200px auto 0;
+}
+
+.square-1, .square-2 {
+	width: 70px;
+	height: 70px;
+	position: absolute;
+}
+
+.square-2 {
+	transform: rotate(-45deg);
+}
+
+.preloader-item {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	background: #3390ce;
+	border-radius: 50%;
+	transform: scale(0.5);
+}
+
+.preloader-item:nth-child(1) {
+	top: 0;
+	left: 0;
+}
+
+.preloader-item:nth-child(2) {
+	top: 0;
+	right: 0;
+}
+
+.preloader-item:nth-child(3) {
+	bottom: 0;
+	right: 0;
+}
+
+.preloader-item:nth-child(4) {
+	bottom: 0;
+	left: 0;
+}
+
+@for $i from 1 through 8 {
+	.item-#{$i} {
+		animation: $animateName $animateDuration $animateTimingFunction $animateIterationCount;
+		@if ($i != 0) {
+			animation-delay: (0.2s * $i);
+		}
+	}
+}
+
+@keyframes loader {
+	0% {
+		transform: scale(0.5);
+	}
+	25% {
+		transform: scale(1);
+	}
+	50% {
+		transition: scale(0.5);
+	}
+	75% {
+		transition: scale(1);
+	}
+	100% {
+		transform: scale(0.5);
+	}
+}
